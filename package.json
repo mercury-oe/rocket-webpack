@@ -1,0 +1,10 @@
+{
+  "name": "webpack-starter-kit",
+  "version": "0.0.1",
+  "description": "Simple webpack starter kit for fast starting projects",
+  "main": "index.js",
+  "repository": "https://github.com/mercury-oe/webpack-starter-kit.git",
+  "author": "Oleg Ambrosevich <oleg.ambrosevich@yandex.ru>",
+  "license": "MIT",
+  "private": false
+}
