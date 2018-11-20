@@ -2,9 +2,10 @@ const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 const common = require('./webpack.common.js');
 const config = require(path.resolve('config'));
-
 
 const devServer = {
   public: config.devServerConfig.public(),
@@ -26,12 +27,18 @@ const devServer = {
   },
 };
 
-
 module.exports = merge(
   common,
   {
     mode: 'development',
     devtool: 'inline-source-map',
     devServer: devServer,
+    plugins: [
+      new HtmlWebpackPlugin({
+        inject: true,
+        filename: 'index.html',
+        template: config.paths.appHtml,
+      }),
+    ],
   }
 );

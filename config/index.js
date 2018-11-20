@@ -10,7 +10,7 @@ module.exports = {
     dist: {
       base: path.resolve('dist/'),
     },
-    appHTML: path.resolve('src/assets/template/'),
+    appHtml: path.resolve('src/assets/template/index.html'),
   },
   entries: {
     main: path.resolve('src/index.js'),
