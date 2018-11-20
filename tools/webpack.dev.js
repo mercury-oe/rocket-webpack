@@ -2,6 +2,9 @@ const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 
+const Dashboard = require('webpack-dashboard');
+const DashboardPlugin = require('webpack-dashboard/plugin');
+const dashboard = new Dashboard();
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const common = require('./webpack.common.js');
@@ -30,6 +33,10 @@ const devServer = {
 module.exports = merge(
   common,
   {
+    output: {
+      filename: path.join('./js', '[name].[hash].js'),
+      publicPath: config.devServerConfig.public() + '/',
+    },
     mode: 'development',
     devtool: 'inline-source-map',
     devServer: devServer,
@@ -39,6 +46,8 @@ module.exports = merge(
         filename: 'index.html',
         template: config.paths.appHtml,
       }),
+      new webpack.HotModuleReplacementPlugin(),
+      new DashboardPlugin(dashboard.setData),
     ],
   }
 );
