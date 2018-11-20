@@ -30,6 +30,44 @@ const devServer = {
   },
 };
 
+
+const imageLoader = {
+  test: /\.(png|jpe?g|gif|svg|webp)$/i,
+  use: [
+    {
+      loader: 'file-loader',
+      options: {
+        name: 'img/[name].[hash].[ext]'
+      }
+    }
+  ]
+};
+
+const postcssLoader = {
+  test: /\.(pcss|css)$/,
+  use: [
+    {
+      loader: 'style-loader',
+    },
+    {
+      loader: 'css-loader',
+      options: {
+        importLoaders: 2,
+        sourceMap: true
+      }
+    },
+    {
+      loader: 'resolve-url-loader'
+    },
+    {
+      loader: 'postcss-loader',
+      options: {
+        sourceMap: true
+      }
+    }
+  ]
+};
+
 module.exports = merge(
   common,
   {
@@ -40,6 +78,12 @@ module.exports = merge(
     mode: 'development',
     devtool: 'inline-source-map',
     devServer: devServer,
+    module: {
+      rules: [
+        postcssLoader,
+        imageLoader,
+      ],
+    },
     plugins: [
       new HtmlWebpackPlugin({
         inject: true,
