@@ -44,7 +44,7 @@ const imageLoader = {
 };
 
 const postcssLoader = {
-  test: /\.(pcss|css)$/,
+  test: /\.css$/,
   use: [
     {
       loader: 'style-loader',

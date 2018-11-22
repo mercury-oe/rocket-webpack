@@ -6,6 +6,10 @@ const config = require(path.resolve('config'));
 const babelLoader = {
   test: /\.js$/,
   exclude: /node_modules/,
+  resolve: {
+    modules: ['node_modules', 'src'],
+    extensions: ['.js', '.json'],
+  },
   use: {
     loader: 'babel-loader',
     options: {
