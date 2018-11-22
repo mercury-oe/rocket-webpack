@@ -17,6 +17,9 @@ module.exports = {
     },
     appHtml: path.resolve('src/assets/template/index.html'),
   },
+  vars: {
+    cssName: 'styles',
+  },
   entries: {
     main: path.resolve('src/index.js'),
   },

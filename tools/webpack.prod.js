@@ -4,18 +4,44 @@ const webpack = require('webpack');
 
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const ImageminWebpWebpackPlugin= require("imagemin-webp-webpack-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const ImageminWebpWebpackPlugin= require('imagemin-webp-webpack-plugin');
 
 const common = require('./webpack.common.js');
 const config = require(path.resolve('config'));
-
-const extractTextPluginOptions = { publicPath: Array(config.cssFilename.split('/').length).join('../') };
 
 const configureCleanWebpack = {
   root: config.paths.dist.base,
   verbose: true,
   dry: false
+};
+
+const configureOptimization = {
+  splitChunks: {
+    cacheGroups: {
+      default: false,
+      common: false,
+      styles: {
+        name: config.vars.cssName,
+        test: /\.css$/,
+        chunks: 'all',
+        enforce: true
+      }
+    }
+  },
+  minimizer: [
+    new OptimizeCssAssetsPlugin({
+      cssProcessorOptions: {
+        map: {
+          inline: false,
+          annotation: true,
+        },
+        safe: true,
+        discardComments: true
+      },
+    })
+  ]
 };
 
 const configureImageLoader =  {
@@ -54,35 +80,52 @@ const configureImageLoader =  {
 
 const postcssLoader = {
   test: /\.css$/,
-  loader: ExtractTextPlugin.extract(
-    Object.assign(
-      {
-        fallback: {
-          loader: require.resolve('style-loader'),
-          options: {
-            hmr: false,
-          },
-        },
-        use: [
-          {
-            loader: require.resolve('css-loader'),
-            options: {
-              importLoaders: 1,
-              minimize: true,
-              sourceMap: false,
-            },
-          },
-          {
-            loader: require.resolve('postcss-loader'),
-            options: {
-              ident: 'postcss',
-            },
-          },
-        ],
+  use: [
+    MiniCssExtractPlugin.loader,
+    {
+      loader: 'css-loader',
+      options: {
+        importLoaders: 1,
+        minimize: true,
+        sourceMap: false,
       },
-      extractTextPluginOptions
-    )
-  ),
+    },
+    {
+      loader: 'postcss-loader',
+      options: {
+        ident: 'postcss',
+      },
+    },
+  ],
+  // loader: ExtractTextPlugin.extract(
+  //   Object.assign(
+  //     {
+  //       fallback: {
+  //         loader: require.resolve('style-loader'),
+  //         options: {
+  //           hmr: false,
+  //         },
+  //       },
+  //       use: [
+  //         {
+  //           loader: require.resolve('css-loader'),
+  //           options: {
+  //             importLoaders: 1,
+  //             minimize: true,
+  //             sourceMap: false,
+  //           },
+  //         },
+  //         {
+  //           loader: require.resolve('postcss-loader'),
+  //           options: {
+  //             ident: 'postcss',
+  //           },
+  //         },
+  //       ],
+  //     },
+  //     extractTextPluginOptions
+  //   )
+  // ),
 };
 
 module.exports = merge(
@@ -92,27 +135,45 @@ module.exports = merge(
       filename: path.join('./js', '[name].[chunkhash].js'),
     },
     mode: 'production',
-    devtool: 'source-map',
+    // devtool: 'source-map',
     module: {
       rules: [
         postcssLoader,
         configureImageLoader,
       ],
     },
+    optimization: configureOptimization,
     plugins: [
       new CleanWebpackPlugin(config.paths.dist.clean,
         configureCleanWebpack,
       ),
       new webpack.optimize.ModuleConcatenationPlugin(),
-      new ExtractTextPlugin({
+      new MiniCssExtractPlugin({
         filename: config.cssFilename,
+        chunkFilename: '[id].[hash].css',
       }),
+      // new ExtractTextPlugin({
+      //   filename: config.cssFilename,
+      // }),
       new HtmlWebpackPlugin({
         inject: true,
         filename: 'index.html',
         template: config.paths.appHtml,
+        minify: {
+          removeComments: true,
+          collapseWhitespace: true,
+          removeRedundantAttributes: true,
+          useShortDoctype: true,
+          removeEmptyAttributes: true,
+          removeStyleLinkTypeAttributes: true,
+          keepClosingSlash: true,
+          minifyJS: true,
+          minifyCSS: true,
+          minifyURLs: true,
+        },
       }),
       new ImageminWebpWebpackPlugin(),
+      new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     ]
   }
 );
