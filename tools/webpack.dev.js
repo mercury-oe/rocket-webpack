@@ -91,7 +91,6 @@ module.exports = merge(
         template: config.paths.appHtml,
       }),
       new webpack.HotModuleReplacementPlugin(),
-      new DashboardPlugin(dashboard.setData),
     ],
   }
 );

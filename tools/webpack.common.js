@@ -1,30 +1,21 @@
 const path = require('path');
+const merge = require('webpack-merge');
 
-const pkg = require(path.resolve('package.json'));
+const javaScriptLoader = require('./modules/javascript');
+const assetsLoaders = require('./modules/assets');
+
 const config = require(path.resolve('config'));
 
-const babelLoader = {
-  test: /\.js$/,
-  exclude: /node_modules/,
-  resolve: {
-    modules: ['node_modules', 'src'],
-    extensions: ['.js', '.json'],
-  },
-  use: {
-    loader: 'babel-loader',
-    options: {
-      cacheDirectory: true,
+module.exports = merge(
+  {
+    entry: config.entries,
+    output: config.output,
+    resolve: {
+      modules: ['node_modules', config.paths.src.base],
     },
   },
-};
-
-const baseConfig = {
-  entry: config.entries,
-  module: {
-    rules: [
-      babelLoader,
-    ],
-  }
-};
-
-module.exports = baseConfig;
+  javaScriptLoader(),
+  assetsLoaders.fontsLoader(),
+  assetsLoaders.imagesLoader(),
+  assetsLoaders.svgLoader(),
+);

@@ -1,5 +1,7 @@
 const path = require('path');
 
+const chunkNameJs = '[name].[hash:8].[id].js';
+
 module.exports = {
   paths: {
     src: {
@@ -22,6 +24,15 @@ module.exports = {
   },
   entries: {
     main: path.resolve('src/index.js'),
+  },
+  output: {
+    filename: path.join('./js', '[name].[hash].js'),
+    chunkFilename: chunkNameJs,
+  },
+  names: {
+    chunkNameJs,
+    chunkNameCss: '[name].[hash:8].[id].css',
+    chunkNameAsset:  '[name].[hash:8].[ext]',
   },
   cssFilename: 'css/[name].[hash:8].css',
   devServerConfig: {

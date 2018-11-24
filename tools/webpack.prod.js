@@ -97,35 +97,6 @@ const postcssLoader = {
       },
     },
   ],
-  // loader: ExtractTextPlugin.extract(
-  //   Object.assign(
-  //     {
-  //       fallback: {
-  //         loader: require.resolve('style-loader'),
-  //         options: {
-  //           hmr: false,
-  //         },
-  //       },
-  //       use: [
-  //         {
-  //           loader: require.resolve('css-loader'),
-  //           options: {
-  //             importLoaders: 1,
-  //             minimize: true,
-  //             sourceMap: false,
-  //           },
-  //         },
-  //         {
-  //           loader: require.resolve('postcss-loader'),
-  //           options: {
-  //             ident: 'postcss',
-  //           },
-  //         },
-  //       ],
-  //     },
-  //     extractTextPluginOptions
-  //   )
-  // ),
 };
 
 module.exports = merge(
