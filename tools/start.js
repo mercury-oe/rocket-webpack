@@ -15,6 +15,7 @@ const devConfig = require('./webpack.dev');
   } = config;
 
   const compiler = webpack(config);
+
   const server = new devServer(compiler, {
     host,
     port,
