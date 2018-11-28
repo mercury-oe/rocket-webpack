@@ -9,7 +9,7 @@
   "private": false,
   "scripts": {
     "start": "yarn run dev",
-    "dev": "webpack-dev-server --config tools/webpack.dev.js",
+    "dev": "node tools/start.js",
     "build": "webpack --config tools/webpack.prod.js --progress --hide-modules"
   },
   "devDependencies": {
@@ -19,9 +19,10 @@
     "@babel/preset-env": "7.1.6",
     "@babel/register": "7.0.0",
     "@babel/runtime": "7.1.5",
-    "@svgr/webpack": "^4.0.4",
+    "@svgr/webpack": "4.0.4",
     "autoprefixer": "9.3.1",
     "babel-loader": "8.0.4",
+    "chalk": "2.4.1",
     "clean-webpack-plugin": "1.0.0",
     "css-loader": "1.0.1",
     "cssnano": "4.1.7",
@@ -51,8 +52,9 @@
     "style-loader": "0.23.1",
     "webpack": "4.25.1",
     "webpack-cli": "3.1.2",
-    "webpack-dashboard": "2.0.0",
     "webpack-dev-server": "3.1.10",
+    "webpack-dev-server-waitpage": "1.0.0",
+    "webpack-hot-middleware": "2.24.3",
     "webpack-merge": "4.1.4"
   },
   "dependencies": {
