@@ -13,18 +13,16 @@ module.exports = {
       base: path.resolve('dist'),
       clean: [
         './img',
+        './images',
         './css',
         './js'
       ]
     },
     appHtml: path.resolve('src/assets/template/index.html'),
   },
-  vars: {
-    cssName: 'styles',
-  },
-  entries: {
-    main: path.resolve('src/index.js'),
-  },
+  entries: [
+    path.resolve('src/index.js'),
+  ],
   output: {
     filename: path.join('./js', '[name].[hash].js'),
     chunkFilename: chunkNameJs,
@@ -32,9 +30,9 @@ module.exports = {
   names: {
     chunkNameJs,
     chunkNameCss: '[name].[hash:8].[id].css',
-    chunkNameAsset:  '[name].[hash:8].[ext]',
+    chunkNameAsset: '[name].[hash:8].[ext]',
+    cssFilename: 'css/[name].[hash:8].css',
   },
-  cssFilename: 'css/[name].[hash:8].css',
   devServerConfig: {
     public: () => process.env.DEVSERVER_PUBLIC || 'http://localhost:3000',
     host: () => process.env.DEVSERVER_HOST || 'localhost',
