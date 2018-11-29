@@ -1,13 +1,12 @@
-const path = require('path');
 const merge = require('webpack-merge');
-const choosePort = require('react-dev-utils/WebpackDevServerUtils').choosePort;
+const { choosePort } = require('react-dev-utils/WebpackDevServerUtils');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const cssLoader = require('./modules/css').cssDevLoader;
 const utils = require('./modules/utils');
 
 const commonConfig = require('./webpack.common.js');
-const config = require(path.resolve('config'));
+const config = require('./config');
 
 async function devConfig() {
   const HOST = config.devServerConfig.host();
@@ -36,7 +35,7 @@ async function devConfig() {
     cssLoader(),
     utils.hotModuleReplacement(),
     utils.friendlyErrors(),
-  )
+  );
 }
 
 module.exports = devConfig;

@@ -46,4 +46,6 @@ compiler.run((error, stats) => {
 
     return null;
   }
+
+  return null;
 });

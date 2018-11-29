@@ -15,8 +15,8 @@ module.exports = {
         './img',
         './images',
         './css',
-        './js'
-      ]
+        './js',
+      ],
     },
     appHtml: path.resolve('src/assets/template/index.html'),
   },

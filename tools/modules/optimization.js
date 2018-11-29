@@ -3,10 +3,10 @@ const ImageminWebpackPlugin = require('imagemin-webpack');
 const imageminMozjpeg = require('imagemin-mozjpeg');
 const imageminPngquant = require('imagemin-pngquant');
 const imageminSvgo = require('imagemin-svgo');
-const ImageminWebpWebpackPlugin= require('imagemin-webp-webpack-plugin');
+const ImageminWebpWebpackPlugin = require('imagemin-webp-webpack-plugin');
 
 const contextReplacement = () => ({
-  plugins: [ new webpack.ContextReplacementPlugin(/moment\/locale$/, /ru/) ],
+  plugins: [new webpack.ContextReplacementPlugin(/moment\/locale$/, /ru/)],
 });
 
 const imageOptimization = () => ({
@@ -16,7 +16,7 @@ const imageOptimization = () => ({
         plugins: [
           imageminMozjpeg({
             progressive: true,
-            quality:     60,
+            quality: 60,
           }),
           imageminPngquant({
             quality: 60,

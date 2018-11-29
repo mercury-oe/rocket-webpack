@@ -1,18 +1,16 @@
-const path = require('path');
-
-const HotModuleReplacementPlugin = require('webpack').HotModuleReplacementPlugin;
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const { HotModuleReplacementPlugin } = require('webpack');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
-const config = require(path.resolve('config'));
+const config = require('../config');
 
 const hotModuleReplacement = () => ({
-  plugins: [ new HotModuleReplacementPlugin() ],
+  plugins: [new HotModuleReplacementPlugin()],
 });
 
 const friendlyErrors = () => ({
-  plugins: [ new FriendlyErrorsWebpackPlugin() ],
+  plugins: [new FriendlyErrorsWebpackPlugin()],
 });
 
 const cleanBuildFolder = () => ({
@@ -20,9 +18,8 @@ const cleanBuildFolder = () => ({
     {
       root: config.paths.dist.base,
       verbose: true,
-      dry: false
-    },
-  )],
+      dry: false,
+    })],
 });
 
 const buildAnalyzer = () => ({

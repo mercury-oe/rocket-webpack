@@ -1,14 +1,13 @@
-const path = require('path');
-const config = require(path.resolve('config'));
+const config = require('../config');
 
 const fontsLoader = () => ({
   module: {
     rules: [
       {
         test: /\.(woff2|eot)$/,
-        use:  [
+        use: [
           {
-            loader:  'file-loader',
+            loader: 'file-loader',
             options: {
               name: `fonts/${config.names.chunkNameAsset}`,
             },
@@ -26,7 +25,7 @@ const imagesLoader = () => ({
         test: /\.(png|jpg|jpeg)$/,
         use: [
           {
-            loader:  'file-loader',
+            loader: 'file-loader',
             options: {
               name: `images/${config.names.chunkNameAsset}`,
             },
@@ -48,7 +47,7 @@ const svgLoader = () => ({
         use: [
           '@svgr/webpack',
           {
-            loader:  'file-loader',
+            loader: 'file-loader',
             options: {
               name: `images/${config.names.chunkNameAsset}`,
             },
@@ -56,13 +55,13 @@ const svgLoader = () => ({
         ],
       },
       {
-        test:   /\.svg$/,
+        test: /\.svg$/,
         issuer: {
           test: /\.css$/,
         },
         use: [
           {
-            loader:  'file-loader',
+            loader: 'file-loader',
             options: {
               name: `images/${config.names.chunkNameAsset}`,
             },

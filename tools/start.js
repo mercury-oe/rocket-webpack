@@ -1,5 +1,5 @@
 const webpack = require('webpack');
-const devServer = require('webpack-dev-server');
+const DevServer = require('webpack-dev-server');
 const hot = require('webpack-hot-middleware');
 const chalk = require('chalk');
 const openBrowser = require('react-dev-utils/openBrowser');
@@ -16,7 +16,7 @@ const devConfig = require('./webpack.dev');
 
   const compiler = webpack(config);
 
-  const server = new devServer(compiler, {
+  const webpackServer = new DevServer(compiler, {
     host,
     port,
     historyApiFallback: true,
@@ -40,7 +40,7 @@ const devConfig = require('./webpack.dev');
     },
   });
 
-  server.listen(port, host, () => {
+  webpackServer.listen(port, host, () => {
     console.log(
       `${chalk.greenBright('→ Server listening on')} ${chalk.blueBright(
         `http://${host}:${port}`,

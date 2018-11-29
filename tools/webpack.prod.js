@@ -1,4 +1,3 @@
-const path = require('path');
 const merge = require('webpack-merge');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -8,7 +7,7 @@ const utils = require('./modules/utils');
 const optimization = require('./modules/optimization');
 
 const commonConfig = require('./webpack.common.js');
-const config = require(path.resolve('config'));
+const config = require('./config');
 
 module.exports = () => {
   const ANALYZE = process.argv.includes('--analyze');
@@ -36,11 +35,11 @@ module.exports = () => {
             minifyURLs: true,
           },
         }),
-      ]
+      ],
     },
     utils.cleanBuildFolder(),
     cssLoader(),
     optimization.imageOptimization(),
     ANALYZE && utils.buildAnalyzer(),
-  )
+  );
 };

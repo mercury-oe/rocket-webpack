@@ -1,13 +1,11 @@
-const path = require('path');
-
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const cssnano = require('cssnano');
 const modules = require('postcss-icss-selectors');
 
-const config = require(path.resolve('config'));
+const config = require('../config');
 
 const cssLoader = ({ sourceMap = false } = { sourceMap: false }) => ({
-  loader:  'css-loader',
+  loader: 'css-loader',
   options: {
     modules: true,
     importLoaders: 1,
@@ -21,27 +19,25 @@ const postCssLoader = ({ sourceMap, minimize } = { sourceMap: false, minimize: f
 
   if (minimize) {
     plugins.push(
-      cssnano({ preset: [ 'default', { normalizeUrl: false }] }),
+      cssnano({ preset: ['default', { normalizeUrl: false }] }),
     );
   }
 
   return {
-    loader:  'postcss-loader',
+    loader: 'postcss-loader',
     options: {
       sourceMap,
       config: {
         path: 'postcss.config.js',
       },
-      plugins: (loader) => {
-        return [
-          ...plugins,
-          modules({
-            mode: loader.resourcePath.includes('.m.css')
-              ? 'local'
-              : 'global'
-          })
-        ]
-      },
+      plugins: loader => [
+        ...plugins,
+        modules({
+          mode: loader.resourcePath.includes('.m.css')
+            ? 'local'
+            : 'global',
+        }),
+      ],
     },
   };
 };
@@ -51,7 +47,7 @@ const cssDevLoader = () => ({
     rules: [
       {
         test: /\.css$/,
-        use:  [
+        use: [
           'style-loader',
           cssLoader({ sourceMap: true }),
           postCssLoader({ sourceMap: true, minimize: false }),
@@ -65,8 +61,8 @@ const cssProdLoader = () => ({
   module: {
     rules: [
       {
-        test:    /\.css$/,
-        include: [ config.paths.src.base, /node_modules/ ],
+        test: /\.css$/,
+        include: [config.paths.src.base, /node_modules/],
         use: [
           MiniCssExtractPlugin.loader,
           cssLoader({ sourceMap: false }),
