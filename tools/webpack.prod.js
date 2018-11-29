@@ -11,6 +11,8 @@ const commonConfig = require('./webpack.common.js');
 const config = require(path.resolve('config'));
 
 module.exports = () => {
+  const ANALYZE = process.argv.includes('--analyze');
+
   return merge(
     commonConfig,
     {
@@ -39,5 +41,6 @@ module.exports = () => {
     utils.cleanBuildFolder(),
     cssLoader(),
     optimization.imageOptimization(),
+    ANALYZE && utils.buildAnalyzer(),
   )
 };

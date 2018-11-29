@@ -1,16 +1,17 @@
 const path = require('path');
 
 const HotModuleReplacementPlugin = require('webpack').HotModuleReplacementPlugin;
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const config = require(path.resolve('config'));
 
-const connectHotModuleReplacement = () => ({
+const hotModuleReplacement = () => ({
   plugins: [ new HotModuleReplacementPlugin() ],
 });
 
-const connectFriendlyErrors = () => ({
+const friendlyErrors = () => ({
   plugins: [ new FriendlyErrorsWebpackPlugin() ],
 });
 
@@ -24,8 +25,19 @@ const cleanBuildFolder = () => ({
   )],
 });
 
+const buildAnalyzer = () => ({
+  plugins: [
+    new BundleAnalyzerPlugin({
+      analyzerMode: 'static',
+      openAnalyzer: true,
+      generateStatsFile: true,
+    }),
+  ],
+});
+
 module.exports = {
-  connectHotModuleReplacement,
-  connectFriendlyErrors,
+  hotModuleReplacement,
+  friendlyErrors,
   cleanBuildFolder,
+  buildAnalyzer,
 };

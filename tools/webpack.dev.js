@@ -34,8 +34,8 @@ async function devConfig() {
       ],
     },
     cssLoader(),
-    utils.connectHotModuleReplacement(),
-    utils.connectFriendlyErrors(),
+    utils.hotModuleReplacement(),
+    utils.friendlyErrors(),
   )
 }
 

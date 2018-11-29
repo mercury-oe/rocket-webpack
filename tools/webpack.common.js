@@ -21,5 +21,5 @@ module.exports = merge(
   assetsLoaders.fontsLoader(),
   assetsLoaders.imagesLoader(),
   assetsLoaders.svgLoader(),
-  optimization.connectContextReplacement(),
+  optimization.contextReplacement(),
 );

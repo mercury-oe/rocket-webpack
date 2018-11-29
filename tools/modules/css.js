@@ -9,8 +9,8 @@ const config = require(path.resolve('config'));
 const cssLoader = ({ sourceMap = false } = { sourceMap: false }) => ({
   loader:  'css-loader',
   options: {
-    modules:        true,
-    importLoaders:  1,
+    modules: true,
+    importLoaders: 1,
     localIdentName: '[path][name]__[local]--[hash:base64:8]',
     sourceMap,
   },
@@ -67,7 +67,7 @@ const cssProdLoader = () => ({
       {
         test:    /\.css$/,
         include: [ config.paths.src.base, /node_modules/ ],
-        use:     [
+        use: [
           MiniCssExtractPlugin.loader,
           cssLoader({ sourceMap: false }),
           postCssLoader({ sourceMap: false, minimize: true }),

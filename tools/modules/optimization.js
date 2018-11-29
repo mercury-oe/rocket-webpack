@@ -5,7 +5,7 @@ const imageminPngquant = require('imagemin-pngquant');
 const imageminSvgo = require('imagemin-svgo');
 const ImageminWebpWebpackPlugin= require('imagemin-webp-webpack-plugin');
 
-const connectContextReplacement = () => ({
+const contextReplacement = () => ({
   plugins: [ new webpack.ContextReplacementPlugin(/moment\/locale$/, /ru/) ],
 });
 
@@ -30,6 +30,6 @@ const imageOptimization = () => ({
 });
 
 module.exports = {
-  connectContextReplacement,
+  contextReplacement,
   imageOptimization,
 };

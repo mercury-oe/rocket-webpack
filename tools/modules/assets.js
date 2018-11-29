@@ -24,7 +24,7 @@ const imagesLoader = () => ({
     rules: [
       {
         test: /\.(png|jpg|jpeg)$/,
-        use:  [
+        use: [
           {
             loader:  'file-loader',
             options: {
@@ -41,7 +41,7 @@ const svgLoader = () => ({
   module: {
     rules: [
       {
-        test:   /\.svg$/,
+        test: /\.svg$/,
         issuer: {
           test: /\.js$/,
         },
