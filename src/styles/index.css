@@ -1,5 +1,23 @@
 body {
   padding: 0;
   margin: 0;
-  background-color: mediumseagreen;
+  width: 100vw;
+  height: 100vh;
+  background-color: #424A60;
+  font-family: Roboto, sans-serif;
+  color: #E7ECED;
+  overflow: hidden;
+}
+
+.root {
+  width: 100vw;
+  height: 100vh;
+  text-align: center;
+}
+
+.title {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 46px;
+  line-height: 46px;
 }

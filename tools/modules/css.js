@@ -7,7 +7,7 @@ const config = require('../config');
 const cssLoader = ({ sourceMap = false } = { sourceMap: false }) => ({
   loader: 'css-loader',
   options: {
-    modules: true,
+    modules: false,
     importLoaders: 1,
     localIdentName: '[path][name]__[local]--[hash:base64:8]',
     sourceMap,

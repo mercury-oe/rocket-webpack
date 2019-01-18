@@ -8,6 +8,8 @@ module.exports = {
       base: path.resolve('src/'),
       js: path.resolve('src/'),
       css: path.resolve('src/css/'),
+      templates: path.resolve('src/templates/'),
+      appHtml: path.resolve('src/templates/index.html'),
     },
     dist: {
       base: path.resolve('dist'),
@@ -18,7 +20,7 @@ module.exports = {
         './js',
       ],
     },
-    appHtml: path.resolve('src/assets/template/index.html'),
+    publicPath: '/',
   },
   entries: [
     path.resolve('src/index.js'),

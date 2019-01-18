@@ -20,19 +20,14 @@ module.exports = () => {
       plugins: [
         new HtmlWebpackPlugin({
           inject: true,
-          filename: 'index.html',
-          template: config.paths.appHtml,
+          template: config.paths.src.appHtml,
           minify: {
             removeComments: true,
-            collapseWhitespace: true,
             removeRedundantAttributes: true,
-            useShortDoctype: true,
             removeEmptyAttributes: true,
-            removeStyleLinkTypeAttributes: true,
             keepClosingSlash: true,
             minifyJS: true,
             minifyCSS: true,
-            minifyURLs: true,
           },
         }),
       ],

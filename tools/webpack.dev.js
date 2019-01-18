@@ -17,8 +17,12 @@ async function devConfig() {
     {
       mode: 'development',
       entry: [
-        'webpack-hot-middleware/client?reload=true&quiet=true',
+        `${require.resolve('webpack-dev-server/client')}?/`,
+        require.resolve('webpack/hot/dev-server'),
       ],
+      output: {
+        publicPath: config.paths.publicPath,
+      },
       devtool: 'cheap-module-eval-source-map',
       devServer: {
         host: HOST,
@@ -27,8 +31,7 @@ async function devConfig() {
       plugins: [
         new HtmlWebpackPlugin({
           inject: true,
-          filename: 'index.html',
-          template: config.paths.appHtml,
+          template: config.paths.src.appHtml,
         }),
       ],
     },

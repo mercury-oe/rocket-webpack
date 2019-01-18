@@ -1,22 +1,23 @@
-const webpack = require('webpack');
-const DevServer = require('webpack-dev-server');
-const hot = require('webpack-hot-middleware');
 const chalk = require('chalk');
-const openBrowser = require('react-dev-utils/openBrowser');
+const webpack = require('webpack');
+const WebpackDevServer = require('webpack-dev-server');
 const waitpage = require('webpack-dev-server-waitpage');
+const hot = require('webpack-hot-middleware');
+const openBrowser = require('react-dev-utils/openBrowser');
 
-const devConfig = require('./webpack.dev');
+const createDevConfig = require('../webpack.dev');
+const config = require('../config');
 
 (async () => {
-  const config = await devConfig();
+  const devConfig = await createDevConfig();
 
   const {
     devServer: { host, port },
-  } = config;
+  } = devConfig;
 
-  const compiler = webpack(config);
+  const compiler = webpack(devConfig);
 
-  const webpackServer = new DevServer(compiler, {
+  const devServer = new WebpackDevServer(compiler, {
     host,
     port,
     historyApiFallback: true,
@@ -24,6 +25,10 @@ const devConfig = require('./webpack.dev');
     quiet: true,
     clientLogLevel: 'none',
     noInfo: true,
+    contentBase: config.paths.src.templates,
+    watchContentBase: true,
+    hot: true,
+    publicPath: config.paths.publicPath,
     before: (app, server) => {
       app.use(
         waitpage(server, {
@@ -40,7 +45,7 @@ const devConfig = require('./webpack.dev');
     },
   });
 
-  webpackServer.listen(port, host, () => {
+  devServer.listen(port, host, () => {
     console.log(
       `${chalk.greenBright('→ Server listening on')} ${chalk.blueBright(
         `http://${host}:${port}`,
