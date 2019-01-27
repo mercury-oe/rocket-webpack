@@ -33,6 +33,7 @@ module.exports = () => {
       ],
     },
     utils.cleanBuildFolder(),
+    optimization.optimizeModules(),
     cssLoader(),
     optimization.imageOptimization(),
     ANALYZE && utils.buildAnalyzer(),

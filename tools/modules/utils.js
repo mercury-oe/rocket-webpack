@@ -14,7 +14,7 @@ const friendlyErrors = () => ({
 });
 
 const cleanBuildFolder = () => ({
-  plugins: [new CleanWebpackPlugin(config.paths.dist.clean,
+  plugins: [new CleanWebpackPlugin(config.paths.dist.base,
     {
       root: config.paths.dist.base,
       verbose: true,
