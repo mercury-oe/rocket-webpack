@@ -19,6 +19,7 @@ module.exports = {
         './css',
         './js',
         './fonts',
+        './assets',
       ],
     },
     publicPath: '/',
@@ -27,8 +28,10 @@ module.exports = {
     path.resolve('src/index.js'),
   ],
   output: {
+    path: path.resolve('dist'),
     filename: path.join('./js', '[name].[hash].js'),
     chunkFilename: chunkNameJs,
+    publicPath: '/',
   },
   names: {
     chunkNameJs,

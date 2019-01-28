@@ -1,17 +1,12 @@
 const merge = require('webpack-merge');
-const { choosePort } = require('react-dev-utils/WebpackDevServerUtils');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-
 const cssLoader = require('./modules/css').cssDevLoader;
 const utils = require('./modules/utils');
 
 const commonConfig = require('./webpack.common.js');
 const config = require('./config');
 
-async function devConfig() {
-  const HOST = config.devServerConfig.host();
-  const suggestedPort = await choosePort(HOST, config.devServerConfig.port());
-
+function devConfig() {
   return merge(
     commonConfig,
     {
@@ -19,14 +14,18 @@ async function devConfig() {
       entry: [
         `${require.resolve('webpack-dev-server/client')}?/`,
         require.resolve('webpack/hot/dev-server'),
+        /**
+         * Важно! Чтобы код нашего приложения подключался после всех hot клиентов
+         * иначе webpackDevServer после возникновения ошибок в коде не будет обновлять приложение
+         */
+        ...config.entries,
       ],
       output: {
         publicPath: config.paths.publicPath,
       },
-      devtool: 'cheap-module-eval-source-map',
-      devServer: {
-        host: HOST,
-        port: suggestedPort,
+      devtool: 'cheap-module-source-map',
+      performance: {
+        hints: false,
       },
       plugins: [
         new HtmlWebpackPlugin({
@@ -35,8 +34,8 @@ async function devConfig() {
         }),
       ],
     },
-    cssLoader(),
     utils.hotModuleReplacement(),
+    cssLoader(),
     utils.friendlyErrors(),
   );
 }

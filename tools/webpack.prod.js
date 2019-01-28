@@ -16,6 +16,7 @@ module.exports = () => {
     commonConfig,
     {
       mode: 'production',
+      entry: [...config.entries],
       devtool: false,
       plugins: [
         new HtmlWebpackPlugin({

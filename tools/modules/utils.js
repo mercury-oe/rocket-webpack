@@ -1,6 +1,7 @@
 const { HotModuleReplacementPlugin } = require('webpack');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
+const ErrorOverlayPlugin = require('error-overlay-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const config = require('../config');
@@ -10,11 +11,14 @@ const hotModuleReplacement = () => ({
 });
 
 const friendlyErrors = () => ({
-  plugins: [new FriendlyErrorsWebpackPlugin()],
+  plugins: [
+    new ErrorOverlayPlugin(),
+    new FriendlyErrorsWebpackPlugin(),
+  ],
 });
 
 const cleanBuildFolder = () => ({
-  plugins: [new CleanWebpackPlugin(config.paths.dist.base,
+  plugins: [new CleanWebpackPlugin(config.paths.dist.clean,
     {
       root: config.paths.dist.base,
       verbose: true,

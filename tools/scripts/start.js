@@ -4,18 +4,17 @@ const WebpackDevServer = require('webpack-dev-server');
 const waitpage = require('webpack-dev-server-waitpage');
 const hot = require('webpack-hot-middleware');
 const openBrowser = require('react-dev-utils/openBrowser');
+const { choosePort } = require('react-dev-utils/WebpackDevServerUtils');
 
 const createDevConfig = require('../webpack.dev');
 const config = require('../config');
 
 (async () => {
   const devConfig = await createDevConfig();
-
-  const {
-    devServer: { host, port },
-  } = devConfig;
-
   const compiler = webpack(devConfig);
+
+  const host = config.devServerConfig.host();
+  const port = await choosePort(host, config.devServerConfig.port());
 
   const devServer = new WebpackDevServer(compiler, {
     host,

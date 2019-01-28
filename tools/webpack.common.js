@@ -8,7 +8,6 @@ const config = require('./config');
 
 module.exports = merge(
   {
-    entry: [...config.entries],
     output: { ...config.output },
     resolve: {
       modules: ['node_modules', config.paths.src.base],
