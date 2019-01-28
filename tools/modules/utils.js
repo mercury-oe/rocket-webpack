@@ -3,6 +3,7 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const ErrorOverlayPlugin = require('error-overlay-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 
 const config = require('../config');
 
@@ -26,6 +27,10 @@ const cleanBuildFolder = () => ({
     })],
 });
 
+const caseSensitivePathsPlugin = () => ({
+  plugins: [new CaseSensitivePathsPlugin()],
+});
+
 const buildAnalyzer = () => ({
   plugins: [
     new BundleAnalyzerPlugin({
@@ -41,4 +46,5 @@ module.exports = {
   friendlyErrors,
   cleanBuildFolder,
   buildAnalyzer,
+  caseSensitivePathsPlugin,
 };
