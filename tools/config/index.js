@@ -1,6 +1,6 @@
 const path = require('path');
 
-const chunkNameJs = '[name].[hash:8].[id].js';
+const chunkNameJs = '[name].[contenthash].[id].js';
 
 module.exports = {
   paths: {
@@ -29,15 +29,15 @@ module.exports = {
   ],
   output: {
     path: path.resolve('dist'),
-    filename: path.join('./js', '[name].[hash].js'),
+    filename: path.join('./js', '[name].[contenthash].js'),
     chunkFilename: chunkNameJs,
-    publicPath: '/',
+    publicPath: './',
   },
   names: {
     chunkNameJs,
-    chunkNameCss: '[name].[hash:8].[id].css',
+    chunkNameCss: '[name].[contenthash].[id].css',
     chunkNameAsset: '[name].[hash:8].[ext]',
-    cssFilename: 'css/[name].[hash:8].css',
+    cssFilename: 'css/[name].[contenthash].css',
   },
   devServerConfig: {
     public: () => process.env.DEVSERVER_PUBLIC || 'http://localhost:3000',

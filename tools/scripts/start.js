@@ -53,4 +53,11 @@ const config = require('../config');
 
     openBrowser(`http://${host}:${port}`);
   });
+
+  ['SIGINT', 'SIGTERM'].forEach(sig => {
+    process.on(sig, () => {
+      devServer.close();
+      process.exit();
+    });
+  });
 })();
