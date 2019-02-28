@@ -1,0 +1,9 @@
+@font-face {
+  font-family: Oxygen;
+  src: url("../../assets/fonts/oxygen-regular.woff") format("woff");
+  font-display: swap;
+}
+
+:root {
+  --font: Oxygen, sans-serif;
+}

@@ -4,7 +4,7 @@ const fontsLoader = () => ({
   module: {
     rules: [
       {
-        test: /\.(woff2|eot)$/,
+        test: /\.(woff|woff2|eot)$/,
         use: [
           {
             loader: 'file-loader',
