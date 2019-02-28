@@ -1,12 +1,23 @@
 @import url("./vars.css");
 
+* {
+  box-sizing: border-box;
+}
+
+html,
 body {
   width: 100vw;
   height: 100vh;
+}
+
+body {
   padding: 0;
   margin: 0;
+  overflow: hidden;
   color: var(--white);
-  font-family: var(--font);
+  font-family: var(--font-main);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .root {
@@ -27,9 +38,18 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 }
 
 .title {
   padding: 0;
-  margin: auto;
+  margin: 0;
+  font-size: 90px;
+  font-weight: 400;
+  font-family: var(--font-second);
+}
+
+.desc {
+  font-size: 18px;
+  line-height: 20px;
 }

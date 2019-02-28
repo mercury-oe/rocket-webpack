@@ -4,6 +4,13 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: BebasNeue;
+  src: url("../../assets/fonts/bebas-neue-regular.woff") format("woff");
+  font-display: swap;
+}
+
 :root {
-  --font: Oxygen, sans-serif;
+  --font-main: Oxygen, sans-serif;
+  --font-second: BebasNeue, sans-serif;
 }
