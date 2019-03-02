@@ -1,3 +1,5 @@
+const path = require('path');
+
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const cssnano = require('cssnano');
 const modules = require('postcss-icss-selectors');
@@ -48,6 +50,12 @@ const cssDevLoader = () => ({
       {
         test: /\.css$/,
         use: [
+          {
+            loader: 'cache-loader',
+            options: {
+              cacheDirectory: path.resolve(config.paths.cacheDir, 'css'),
+            },
+          },
           'style-loader',
           cssLoader({ sourceMap: true }),
           postCssLoader({ sourceMap: true, minimize: false }),

@@ -22,6 +22,7 @@ module.exports = {
         './assets',
       ],
     },
+    cacheDir: path.resolve('node_modules', '.cache'),
     publicPath: '/',
   },
   entries: [
