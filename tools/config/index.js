@@ -29,9 +29,9 @@ module.exports = {
   ],
   output: {
     path: path.resolve('dist'),
-    filename: path.join('./js', '[name].[contenthash].js'),
+    filename: path.join('./js', '[name].[hash].js'),
     chunkFilename: chunkNameJs,
-    publicPath: './',
+    publicPath: '/',
   },
   names: {
     chunkNameJs,

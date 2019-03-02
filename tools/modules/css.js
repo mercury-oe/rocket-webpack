@@ -9,7 +9,7 @@ const cssLoader = ({ sourceMap = false } = { sourceMap: false }) => ({
   options: {
     modules: false,
     importLoaders: 1,
-    localIdentName: '[path][name]__[local]--[hash:base64:8]',
+    localIdentName: '[path][name]--[hash:base64:8]',
     sourceMap,
   },
 });

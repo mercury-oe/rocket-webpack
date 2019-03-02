@@ -23,7 +23,7 @@ function devConfig() {
       output: {
         publicPath: config.paths.publicPath,
       },
-      devtool: 'cheap-module-source-map',
+      devtool: 'eval',
       performance: {
         hints: false,
       },
