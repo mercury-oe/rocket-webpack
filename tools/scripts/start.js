@@ -1,7 +1,6 @@
 const chalk = require('chalk');
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
-const waitpage = require('webpack-dev-server-waitpage');
 const hot = require('webpack-hot-middleware');
 const openBrowser = require('react-dev-utils/openBrowser');
 const { choosePort } = require('react-dev-utils/WebpackDevServerUtils');
@@ -28,13 +27,6 @@ const config = require('../config');
     watchContentBase: true,
     hot: true,
     publicPath: config.paths.publicPath,
-    before: (app, server) => {
-      app.use(
-        waitpage(server, {
-          theme: 'dark',
-        }),
-      );
-    },
     after: (app) => {
       app.use(
         hot(compiler, {
