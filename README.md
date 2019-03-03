@@ -13,7 +13,7 @@ Get started
 **Setup**
 1. `git clone https://github.com/mercury-oe/webpack-starter-kit.git`
 2. `cd webpack-starter-kit`
-3. `yarn` или `yarn install`
+3. `yarn` or `yarn install`
 4. `yarn start`
 
 By default, the project will run on`localhost:3000` 
