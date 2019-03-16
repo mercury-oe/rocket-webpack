@@ -1,4 +1,4 @@
-webpack-starter-kit
+rocket-webpack
 =========
 
 Simple webpack starter kit for fast starting projects
@@ -11,8 +11,8 @@ Get started
 - [Yarn](https://yarnpkg.com/lang/en/)
 
 **Setup**
-1. `git clone https://github.com/mercury-oe/webpack-starter-kit.git`
-2. `cd webpack-starter-kit`
+1. `git clone https://github.com/mercury-oe/rocket-webpack.git`
+2. `cd rocket-webpack`
 3. `yarn` or `yarn install`
 4. `yarn start`
 
