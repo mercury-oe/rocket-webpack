@@ -39,10 +39,20 @@ const buildAnalyzer = () => ({
   ],
 });
 
+const threadLoader = name => ({
+  loader: 'thread-loader',
+  options: {
+    workerParallelJobs: 50,
+    poolRespawn: false,
+    name,
+  },
+});
+
 module.exports = {
   hotModuleReplacement,
   friendlyErrors,
   cleanBuildFolder,
   buildAnalyzer,
   caseSensitivePathsPlugin,
+  threadLoader,
 };

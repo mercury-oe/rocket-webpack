@@ -1,6 +1,7 @@
 const path = require('path');
 
 const config = require('../config');
+const { threadLoader } = require('../modules/utils');
 
 const javaScriptLoader = () => ({
   module: {
@@ -14,6 +15,7 @@ const javaScriptLoader = () => ({
               cacheDirectory: path.resolve(config.paths.cacheDir, 'js'),
             },
           },
+          threadLoader('js'),
           {
             loader: 'babel-loader',
             options: {
