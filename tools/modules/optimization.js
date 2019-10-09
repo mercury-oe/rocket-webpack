@@ -3,7 +3,6 @@ const ImageminWebpackPlugin = require('imagemin-webpack');
 const imageminMozjpeg = require('imagemin-mozjpeg');
 const imageminPngquant = require('imagemin-pngquant');
 const imageminSvgo = require('imagemin-svgo');
-const ImageminWebpWebpackPlugin = require('imagemin-webp-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 
 const contextReplacement = () => ({
@@ -26,7 +25,6 @@ const imageOptimization = () => ({
         ],
       },
     }),
-    new ImageminWebpWebpackPlugin(),
   ],
 });
 

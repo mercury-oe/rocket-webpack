@@ -3,7 +3,6 @@ const merge = require('webpack-merge');
 const javaScriptLoader = require('./modules/javascript');
 const assetsLoaders = require('./modules/assets');
 const optimization = require('./modules/optimization');
-const utils = require('./modules/utils');
 
 const config = require('./config');
 
@@ -19,5 +18,4 @@ module.exports = merge(
   assetsLoaders.imagesLoader(),
   assetsLoaders.svgLoader(),
   optimization.contextReplacement(),
-  utils.caseSensitivePathsPlugin(),
 );

@@ -2,7 +2,6 @@ const { HotModuleReplacementPlugin } = require('webpack');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 
 const config = require('../config');
 
@@ -23,10 +22,6 @@ const cleanBuildFolder = () => ({
       verbose: true,
       dry: false,
     })],
-});
-
-const caseSensitivePathsPlugin = () => ({
-  plugins: [new CaseSensitivePathsPlugin()],
 });
 
 const buildAnalyzer = () => ({
