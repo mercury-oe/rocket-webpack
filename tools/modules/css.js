@@ -2,7 +2,6 @@ const path = require('path');
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const cssnano = require('cssnano');
-const modules = require('postcss-icss-selectors');
 const { threadLoader } = require('../modules/utils');
 
 const config = require('../config');
@@ -31,12 +30,7 @@ const postCssLoader = ({ sourceMap, minimize } = { sourceMap: false, minimize: f
       config: {
         path: 'postcss.config.js',
       },
-      plugins: loader => [
-        ...plugins,
-        modules({
-          mode: loader.resourcePath.includes('.m.css') ? 'local' : 'global',
-        }),
-      ],
+      plugins: () => [...plugins],
     },
   };
 };
@@ -70,8 +64,8 @@ const cssProdLoader = () => ({
         test: /\.css$/,
         include: [config.paths.src.base, /node_modules/],
         use: [
-          threadLoader('css'),
           MiniCssExtractPlugin.loader,
+          threadLoader('css'),
           cssLoader({ sourceMap: false }),
           postCssLoader({ sourceMap: false, minimize: true }),
         ],
